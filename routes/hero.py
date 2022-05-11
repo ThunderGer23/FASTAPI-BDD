@@ -7,7 +7,7 @@ import csv
 
 hero = APIRouter()
 
-@hero.post("/uploadfile")
+@hero.post("/uploadfile/hero")
 async def upload_file(file: UploadFile = File(...)):
     csvFilePath = getcwd() + '/docs/hero/' + file.filename
     jsonFilePath = f'{csvFilePath.replace(".csv","")}.json'
@@ -33,7 +33,7 @@ async def upload_file(file: UploadFile = File(...)):
     
     return "Success!"
     
-@hero.delete("/delete/{name_file}")
+@hero.delete("/delete/file_hero/{name_file}")
 def delete_file(name_file: str):
     try:
         remove(getcwd() + '/docs/hero/' + name_file)
@@ -47,7 +47,7 @@ def delete_file(name_file: str):
             "message": "File not found"
         }, status_code = 404)
 
-@hero.delete("/folder/{folder_name}")
+@hero.delete("/folder/hero/{folder_name}")
 def delete_folder(folder_name: str):
     try:
         rmtree(getcwd() + '/docs/' + folder_name)
