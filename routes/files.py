@@ -26,11 +26,14 @@ async def upload_file(file: UploadFile = File(...)):
     with open(csvFilePath, encoding='utf-8') as csvf:
         csvReader = csv.DictReader(csvf)
                 
-        text_keys = list(csvReader)[0].keys()
-        for key in list(csvReader)[0].keys():
-            if(len(csvReader[key]) > len(csvReader[text_keys])):
+        dictObj = list(csvReader)[0]
+        text_keys = list(dictObj.keys())[0]
+        for key in list(dictObj.keys()):
+            if(len(dictObj[key]) > len(dictObj[text_keys])):
                 text_keys = key
-        print(text_keys)
+        # ->this is for recoder description or text for keys IA
+        #print(text_keys + ":" + dictObj[text_keys])
+
 
         for rows in csvReader:
             data.append(rows)
