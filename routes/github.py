@@ -9,12 +9,12 @@ github = APIRouter()
 
 @github.post("/uploadfile/github")
 async def upload_file(file: UploadFile = File(...)):
-    csvFilePath = getcwd() + '/docs/github/' + file.filename
+    csvFilePath = getcwd() + '/document/github/' + file.filename
     jsonFilePath = f'{csvFilePath.replace(".csv","")}.json'
     data = []
     
     try:
-        mkdir(getcwd() + '/docs/github/')
+        mkdir(getcwd() + '/document/github/')
     except FileExistsError:
         pass
 
@@ -36,7 +36,7 @@ async def upload_file(file: UploadFile = File(...)):
 @github.delete("/delete/file_github/{name_file}")
 def delete_file(name_file: str):
     try:
-        remove(getcwd() + '/docs/github/' + name_file)
+        remove(getcwd() + '/document/github/' + name_file)
         return JSONResponse(content = {
             "removed": True,
             "message": "File Remove Successfully"
@@ -50,7 +50,7 @@ def delete_file(name_file: str):
 @github.delete("/folder/github/{folder_name}")
 def delete_folder(folder_name: str):
     try:
-        rmtree(getcwd() + '/docs/' + folder_name)
+        rmtree(getcwd() + '/document/' + folder_name)
         return JSONResponse(content = {
             "removed": True,
             "message": "File Remove Successfully"

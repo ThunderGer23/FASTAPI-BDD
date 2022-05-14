@@ -9,12 +9,12 @@ medium = APIRouter()
 
 @medium.post("/uploadfile/medium")
 async def upload_file(file: UploadFile = File(...)):
-    csvFilePath = getcwd() + '/docs/medium/' + file.filename
+    csvFilePath = getcwd() + '/document/medium/' + file.filename
     jsonFilePath = f'{csvFilePath.replace(".csv","")}.json'
     data = []
     
     try:
-        mkdir(getcwd() + '/docs/medium/')
+        mkdir(getcwd() + '/document/medium/')
     except FileExistsError:
         pass
 
@@ -36,7 +36,7 @@ async def upload_file(file: UploadFile = File(...)):
 @medium.delete("/delete/file_medium/{name_file}")
 def delete_file(name_file: str):
     try:
-        remove(getcwd() + '/docs/medium/' + name_file)
+        remove(getcwd() + '/document/medium/' + name_file)
         return JSONResponse(content = {
             "removed": True,
             "message": "File Remove Successfully"
@@ -50,7 +50,7 @@ def delete_file(name_file: str):
 @medium.delete("/folder/medium/{folder_name}")
 def delete_folder(folder_name: str):
     try:
-        rmtree(getcwd() + '/docs/' + folder_name)
+        rmtree(getcwd() + '/document/' + folder_name)
         return JSONResponse(content = {
             "removed": True,
             "message": "File Remove Successfully"

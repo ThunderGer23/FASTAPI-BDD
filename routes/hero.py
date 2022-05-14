@@ -9,12 +9,12 @@ hero = APIRouter()
 
 @hero.post("/uploadfile/hero")
 async def upload_file(file: UploadFile = File(...)):
-    csvFilePath = getcwd() + '/docs/hero/' + file.filename
+    csvFilePath = getcwd() + '/document/hero/' + file.filename
     jsonFilePath = f'{csvFilePath.replace(".csv","")}.json'
     data = []
     
     try:
-        mkdir(getcwd() + '/docs/hero/')
+        mkdir(getcwd() + '/document/hero/')
     except FileExistsError:
         pass
 
@@ -36,7 +36,7 @@ async def upload_file(file: UploadFile = File(...)):
 @hero.delete("/delete/file_hero/{name_file}")
 def delete_file(name_file: str):
     try:
-        remove(getcwd() + '/docs/hero/' + name_file)
+        remove(getcwd() + '/document/hero/' + name_file)
         return JSONResponse(content = {
             "removed": True,
             "message": "File Remove Successfully"
@@ -50,7 +50,7 @@ def delete_file(name_file: str):
 @hero.delete("/folder/hero/{folder_name}")
 def delete_folder(folder_name: str):
     try:
-        rmtree(getcwd() + '/docs/' + folder_name)
+        rmtree(getcwd() + '/document/' + folder_name)
         return JSONResponse(content = {
             "removed": True,
             "message": "File Remove Successfully"

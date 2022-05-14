@@ -9,12 +9,12 @@ files = APIRouter()
 
 @files.post("/uploadfile")
 async def upload_file(file: UploadFile = File(...)):
-    csvFilePath = getcwd() + '/docs/' + file.filename
+    csvFilePath = getcwd() + '/document/' + file.filename
     jsonFilePath = f'{csvFilePath.replace(".csv","")}.json'
     data = []
     
     try:
-        mkdir(getcwd() + '/docs/')
+        mkdir(getcwd() + '/document/')
     except FileExistsError:
         pass
 
@@ -46,7 +46,7 @@ async def upload_file(file: UploadFile = File(...)):
 @files.delete("/delete/{name_file}")
 def delete_file(name_file: str):
     try:
-        remove(getcwd() + '/docs/' + name_file)
+        remove(getcwd() + '/document/' + name_file)
         return JSONResponse(content = {
             "removed": True,
             "message": "File Remove Successfully"
@@ -60,7 +60,7 @@ def delete_file(name_file: str):
 @files.delete("/folder/{folder_name}")
 def delete_folder(folder_name: str):
     try:
-        rmtree(getcwd() + '/docs/' + folder_name)
+        rmtree(getcwd() + '/document/' + folder_name)
         return JSONResponse(content = {
             "removed": True,
             "message": "File Remove Successfully"
