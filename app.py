@@ -1,8 +1,11 @@
 from fastapi import FastAPI
+from routes.npm import npm
 from routes.hero import hero
+from routes.steam import steam
+from routes.files import files
 from routes.github import github
 from routes.medium import medium
-from routes.files import files
+from routes.programming import programming
 from documentation.docs import tags_metadata
 
 app = FastAPI(
@@ -22,7 +25,10 @@ app = FastAPI(
     openapi_tags= tags_metadata
 )
 
+app.include_router(npm)
 app.include_router(hero)
+app.include_router(steam)
 app.include_router(files)
 app.include_router(github)
 app.include_router(medium)
+app.include_router(programming)
