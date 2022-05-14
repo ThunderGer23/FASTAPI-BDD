@@ -1,6 +1,8 @@
 /ProyectoFinal-BDD
-__pycache__
+/__pycache__
 /document/*
+/config/__pycache__
+/documentation/__pycache__
 routes/__pycache__/*.pyc_
 /routes/__pycache__
 
