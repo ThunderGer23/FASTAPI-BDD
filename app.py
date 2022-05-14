@@ -9,6 +9,16 @@ app = FastAPI(
     title = 'API con FastAPI para la recopilación y administración de información sobre diversos temas',
     description = 'Esta API es producto del proyecto final de BDD para la integración de una Base de Datos Distribuida',
     version = '1.2',
+    terms_of_service="http://example.com/terms/",
+    contact={
+        "name": "ThunderGer",
+        "url": "http://x-force.example.com/contact/",
+        "email": "ThunderGer@outlook.com",
+    },
+    license_info={
+        'name': 'MIT License',
+        'url': 'https://opensource.org/licenses/MIT'
+    },
     openapi_tags= tags_metadata
 )
 

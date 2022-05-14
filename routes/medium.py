@@ -1,13 +1,14 @@
 from fastapi import APIRouter, UploadFile, File
 from fastapi.responses import JSONResponse
 from os import getcwd, remove, mkdir
+from config.db import Mon
 from shutil import rmtree
 import json
 import csv
 
 medium = APIRouter()
 
-@medium.post("/uploadfile/medium")
+@medium.post("/uploadfile/medium", tags=['Medium'])
 async def upload_file(file: UploadFile = File(...)):
     csvFilePath = getcwd() + '/document/medium/' + file.filename
     jsonFilePath = f'{csvFilePath.replace(".csv","")}.json'
@@ -33,7 +34,7 @@ async def upload_file(file: UploadFile = File(...)):
     
     return "Success!"
     
-@medium.delete("/delete/file_medium/{name_file}")
+@medium.delete("/delete/file_medium/{name_file}", tags=['Medium'])
 def delete_file(name_file: str):
     try:
         remove(getcwd() + '/document/medium/' + name_file)
@@ -47,7 +48,7 @@ def delete_file(name_file: str):
             "message": "File not found"
         }, status_code = 404)
 
-@medium.delete("/folder/medium/{folder_name}")
+@medium.delete("/folder/medium/{folder_name}", tags=['Medium'])
 def delete_folder(folder_name: str):
     try:
         rmtree(getcwd() + '/document/' + folder_name)
