@@ -5,16 +5,16 @@ from shutil import rmtree
 import json
 import csv
 
-hero = APIRouter()
+medium = APIRouter()
 
-@hero.post("/uploadfile/hero")
+@medium.post("/uploadfile/medium")
 async def upload_file(file: UploadFile = File(...)):
-    csvFilePath = getcwd() + '/document/hero/' + file.filename
+    csvFilePath = getcwd() + '/document/medium/' + file.filename
     jsonFilePath = f'{csvFilePath.replace(".csv","")}.json'
     data = []
     
     try:
-        mkdir(getcwd() + '/document/hero/')
+        mkdir(getcwd() + '/document/medium/')
     except FileExistsError:
         pass
 
@@ -33,10 +33,10 @@ async def upload_file(file: UploadFile = File(...)):
     
     return "Success!"
     
-@hero.delete("/delete/file_hero/{name_file}")
+@medium.delete("/delete/file_medium/{name_file}")
 def delete_file(name_file: str):
     try:
-        remove(getcwd() + '/document/hero/' + name_file)
+        remove(getcwd() + '/document/medium/' + name_file)
         return JSONResponse(content = {
             "removed": True,
             "message": "File Remove Successfully"
@@ -47,7 +47,7 @@ def delete_file(name_file: str):
             "message": "File not found"
         }, status_code = 404)
 
-@hero.delete("/folder/hero/{folder_name}")
+@medium.delete("/folder/medium/{folder_name}")
 def delete_folder(folder_name: str):
     try:
         rmtree(getcwd() + '/document/' + folder_name)
