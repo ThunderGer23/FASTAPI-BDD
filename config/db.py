@@ -1,5 +1,3 @@
-from pymongo import MongoClient
-
 # ? Todas las claves de acceso que tiene este archivo deben eliminarse y accederse desde variables de entorno dedicadas para el repositorio
 
 MonClient = {
@@ -19,5 +17,5 @@ SQLClient = [{
 #TODO: Check link for connection
 #MySQL_Daphne="mysql://root:mE73tnaYDSaTByOIJHZh@containers-us-west-54.railway.app:6848/railway"
 
-Mon = MongoClient(MonClient)
+#Mon = MongoClient(MonClient)
 #MySQL = MongoClient(mongo_url) -> this is for MySQL

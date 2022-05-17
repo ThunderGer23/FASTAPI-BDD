@@ -1,12 +1,20 @@
 from fastapi import APIRouter, UploadFile, File
+from schemas.medium import mediumEntity, mediumsEntity
+from models.medium import MediumDatesForRepo, MediumText
 from fastapi.responses import JSONResponse
 from os import getcwd, remove, mkdir
-from config.db import Mon
+from pymongo import MongoClient
+from config.db import MonClient
 from shutil import rmtree
 import json
 import csv
 
 medium = APIRouter()
+
+@medium.get("/test", tags=['Testeo'])
+def test():
+    print(MonClient["ThunderGer"])
+    return "successful"
 
 @medium.post("/uploadfile/medium", tags=['Medium'])
 async def upload_file(file: UploadFile = File(...)):
@@ -61,3 +69,22 @@ def delete_folder(folder_name: str):
             "removed": False,
             "message": "Folder not found"
         }, status_code = 404)
+
+@medium.get("/repoMedum", tags=['Medium'])
+def get_all_repos():
+    Mon = MongoClient(MonClient["ThunderGer"])
+    return mediumsEntity(Mon.bdd.medium.find())
+
+@medium.post("/repoMedum", tags=['Medium'])
+def create_medium(medium: MediumText):
+    new_medium = dict(medium)
+    del medium["id"]
+    Mon = MongoClient(MonClient["ThunderGer"])
+    id = Mon.bdd.medium.insert_one(new_medium).inserted_id
+    return str(id)
+
+@medium.get("/repoMedium/{id}", tags=['Medium'])
+def get_medium():
+    Mon = MongoClient(MonClient["ThunderGer"])
+    medium = Mon.bdd.medium.find_one({"_id": id})
+    return mediumEntity(medium)

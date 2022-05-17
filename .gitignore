@@ -6,3 +6,5 @@
 routes/__pycache__/*.pyc_
 /routes/__pycache__
 
+models/__pycache__/medium.cpython-39.pyc
+schemas/__pycache__/medium.cpython-39.pyc
