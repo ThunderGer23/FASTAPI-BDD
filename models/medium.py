@@ -3,6 +3,7 @@ from pydantic import BaseModel
 
 class MediumDatesForRepo(BaseModel):
     id: Optional[str]
+    idMediumText: str
     title: str
     url: str
     authors: str

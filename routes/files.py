@@ -1,7 +1,6 @@
 from fastapi import APIRouter, UploadFile, File
 from os import getcwd, remove, mkdir, getenv
 from fastapi.responses import JSONResponse
-from config.db import Mon
 from shutil import rmtree
 import json
 import csv

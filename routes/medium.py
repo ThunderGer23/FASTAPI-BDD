@@ -1,26 +1,50 @@
+from turtle import title
 from fastapi import APIRouter, UploadFile, File
-from schemas.medium import mediumEntity, mediumsEntity
+from numpy import load
+from schemas.medium import mediumEntity, mediumsEntity, mediumRepoEntity, mediumDatesEntity, mediumsDatesEntity
 from models.medium import MediumDatesForRepo, MediumText
 from fastapi.responses import JSONResponse
 from os import getcwd, remove, mkdir
 from pymongo import MongoClient
+from bson import ObjectId
 from config.db import MonClient
+import requests
 from shutil import rmtree
 import json
+from operator import itemgetter as ig
 import csv
 
 medium = APIRouter()
 
-@medium.get("/test", tags=['Testeo'])
-def test():
-    print(MonClient["ThunderGer"])
-    return "successful"
+def test(rows):          
+    text, tags, title, url, authors, timestamp = ig('text', 'tags', 'title', 'url', 'authors', 'timestamp')(rows)         
+    id = create_medium({
+        'text': text,
+        'tags': tags})
+
+    return create_medium_Dates_For_Medium({
+        'idMediumText': id,
+        'title': title,
+        'url': url,
+        'authors': authors,
+        'timestamp': timestamp})
+
+def create_medium(medium: MediumText):    
+    new_medium = dict(medium)    
+    Mon = MongoClient(MonClient["ThunderGer"])
+    id = Mon.bdd.medium.insert_one(new_medium).inserted_id
+    return str(id)
+
+def create_medium_Dates_For_Medium(medium: MediumDatesForRepo):
+    new_medium = dict(medium)    
+    Mon = MongoClient(MonClient["Daphne"])
+    id = Mon.bdd.medium.insert_one(new_medium).inserted_id
+    return str(id)
 
 @medium.post("/uploadfile/medium", tags=['Medium'])
 async def upload_file(file: UploadFile = File(...)):
     csvFilePath = getcwd() + '/document/medium/' + file.filename
-    jsonFilePath = f'{csvFilePath.replace(".csv","")}.json'
-    data = []
+    jsonFilePath = f'{csvFilePath.replace(".csv","")}.json'    
     
     try:
         mkdir(getcwd() + '/document/medium/')
@@ -32,15 +56,11 @@ async def upload_file(file: UploadFile = File(...)):
         myfile.write(content)
         myfile.close()
 
-    with open(csvFilePath, encoding='utf-8') as csvf:
-        csvReader = csv.DictReader(csvf)
-        for rows in csvReader:
-            data.append(rows)
-
-    with open(jsonFilePath, 'w', encoding='utf-8') as jsonf:
-        jsonf.write(json.dumps(data, indent=4))
-    
-    return "Success!"
+    with open(csvFilePath, encoding='utf-8') as csvf:               
+        csvReader = csv.DictReader(csvf)        
+        for rows in csvReader:            
+            test(rows)            
+        return "Success!"    
     
 @medium.delete("/delete/file_medium/{name_file}", tags=['Medium'])
 def delete_file(name_file: str):
@@ -70,21 +90,20 @@ def delete_folder(folder_name: str):
             "message": "Folder not found"
         }, status_code = 404)
 
-@medium.get("/repoMedum", tags=['Medium'])
-def get_all_repos():
-    Mon = MongoClient(MonClient["ThunderGer"])
-    return mediumsEntity(Mon.bdd.medium.find())
-
-@medium.post("/repoMedum", tags=['Medium'])
-def create_medium(medium: MediumText):
-    new_medium = dict(medium)
-    del medium["id"]
-    Mon = MongoClient(MonClient["ThunderGer"])
-    id = Mon.bdd.medium.insert_one(new_medium).inserted_id
-    return str(id)
-
 @medium.get("/repoMedium/{id}", tags=['Medium'])
-def get_medium():
+def get_medium(id: str):
     Mon = MongoClient(MonClient["ThunderGer"])
-    medium = Mon.bdd.medium.find_one({"_id": id})
-    return mediumEntity(medium)
+    medium = Mon.bdd.medium.find_one({"_id": ObjectId(id)})
+    return mediumRepoEntity(medium)
+
+@medium.get("/repoDatesMedium/{author}", tags=['Medium'])
+def get_medium(author: str):
+    Mon = MongoClient(MonClient["Daphne"])
+    medium = Mon.bdd.medium.find({"authors": author})
+    return mediumsDatesEntity(medium)
+
+@medium.get("/repoCountMedium", tags=['Medium'])
+def get_medium(author: str):
+    Mon = MongoClient(MonClient["Daphne"])
+    medium = Mon.bdd.medium.count_documents({"authors": author})
+    return medium
