@@ -1,48 +1,33 @@
-# Título del Proyecto
+# Base de datos distribuida con el uso de bot de Telegram
 
-_Acá va un párrafo que describa lo que es el proyecto_
+_Diseñar una base de datos distribuida que ocupe diferentes sistemas de gestión al menos un NoSQL y un SQL.
+Diseñar los bots (uno de telegram y uno de discord) mediante los cuales los usuarios obtendrán acceso a la base de datos distribuida._
 
 ## Comenzando 🚀
 
-_Este es un bot hecho por la bandita del pasillo lateral para la bandita del pasillo lateral :V/._
+_Este proyecto es desarrollado para la clase de Base de datos distribuidas en el cual se implementara el uso de un bot Telegram para hacer consultas en la base de datos._
 
 
 ### Pre-requisitos 📋
 
-_Que cosas necesitas para instalar el software y como instalarlas_
+**Requisitos Desarrollador**
+Nesesitaras: 
+* Tener cuenta de github
+* Hacer el comando de git clone y el link del Githun para poder tener el proyecto con todas las extensiones.
+* En su defecto tendrás que descargar el .zip e instalar las extensiones necesarias para que el proyecto funcione.
+
 
 ```
-Da un ejemplo
+pip install anyio asgiref certifi charset-normalizer npclick colorama et-xmlfile fastapi greenlet h11 idna numpy openai openpyxl pandas pandas-stubs pydantic pymongo PyMySQL python-dateutil python-multipart pytz requests six sniffio SQLAlchemy starlette tqdm typing-extensions urllib3 uvicorn
 ```
 
-### Instalación 🔧
-
-_Una serie de ejemplos paso a paso que te dice lo que debes ejecutar para tener un entorno de desarrollo ejecutandose_
-
-_Dí cómo será ese paso_
-
-```
-npm init --yes
-npm i telegraf
-npm i nodemon
-npm i discordjs
-```
-
-
-_Finaliza con un ejemplo de cómo obtener datos del sistema o como usarlos para una pequeña demo_
+**Requisitos Usuario**
+El usuario solo necesitará un navegador web 
 
 ## Ejecutando las pruebas ⚙️
 
-_Explica como ejecutar las pruebas automatizadas para este sistema_
-
-### Analice las pruebas end-to-end 🔩
-
-_Explica que verifican estas pruebas y por qué_
-
-```
-Da un ejemplo
-```
-
+__
+<img src=”/documentacion/assets/img/Prueba2.png” width="90">
 ### Y las pruebas de estilo de codificación ⌨️
 
 _Explica que verifican estas pruebas y por qué_
