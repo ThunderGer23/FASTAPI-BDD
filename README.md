@@ -26,15 +26,15 @@ El usuario solo necesitará un navegador web
 
 ## Ejecutando las pruebas ⚙️
 
-__
-<img src=”/documentacion/assets/img/Prueba2.png” width="90">
+_El framework de FastAPI te ofrece su propio entorno de pruebas._
+
+<img src="documentacion/assets/img/Prueba2.png" width="700">
+
 ### Y las pruebas de estilo de codificación ⌨️
 
-_Explica que verifican estas pruebas y por qué_
+_Codificación de la base de datos._
 
-```
-Da un ejemplo
-```
+<img src="documentacion/assets/img/Codigo.png" width="700">
 
 ## Despliegue 📦
 
@@ -44,13 +44,37 @@ _Agrega notas adicionales sobre como hacer deploy_
 
 _Menciona las herramientas que utilizaste para crear tu proyecto_
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - El framework web usado
-* [Maven](https://maven.apache.org/) - Manejador de dependencias
-* [ROME](https://rometools.github.io/rome/) - Usado para generar RSS
-
-## Contribuyendo 🖇️
-
-Por favor lee el [CONTRIBUTING.md](https://gist.github.com/villanuevand/xxxxxx) para detalles de nuestro código de conducta, y el proceso para enviarnos pull requests.
+* [anyio](https://anyio.readthedocs.io/en/stable/) 
+* [asgiref](https://pypi.org/project/asgiref/) 
+* [certifi](https://pypi.org/project/certifi/) 
+* [charset-normalizer](https://pypi.org/project/charset-normalizer/) 
+* [npclick](https://docs.angularjs.org/api/ng/directive/ngClick) 
+* [colorama](https://pypi.org/project/colorama/) 
+* [et-xmlfile](https://pypi.org/project/et-xmlfile/) 
+* [fastapi](https://pypi.org/project/fastapi/) 
+* [greenlet](https://pypi.org/project/greenlet/) 
+* [h11](https://pypi.org/project/h11/) 
+* [idna](https://pypi.org/project/idna/) 
+* [numpy](https://pypi.org/project/numpy/) 
+* [openai](https://pypi.org/project/openai/)
+* [openpyxl](https://pypi.org/project/openpyxl/) 
+* [pandas](https://pypi.org/project/pandas/) 
+* [pandas-stubs](https://pypi.org/project/pandas-stubs/) 
+* [pydantic](https://pypi.org/project/pydantic/) 
+* [pymongo](https://pypi.org/project/pymongo/) 
+* [PyMySQL](https://pypi.org/project/PyMySQL/) 
+* [python-dateutil](https://pypi.org/project/python-dateutil/) 
+* [python-multipart](https://pypi.org/project/python-multipart/)
+* [pytz](https://pypi.org/project/pytz/) 
+* [requests](https://pypi.org/project/requests/) 
+* [six](https://pypi.org/project/six/) 
+* [sniffio](https://pypi.org/project/sniffio/) 
+* [SQLAlchemy](https://pypi.org/project/SQLAlchemy/) 
+* [starlette](https://pypi.org/project/starlette/) 
+* [tqdm](https://pypi.org/project/tqdm/) 
+* [typing-extensions](https://pypi.org/project/typing-extensions/) 
+* [urllib3](https://pypi.org/project/urllib3/) 
+* [uvicorn](https://pypi.org/project/uvicorn/)                
 
 ## Wiki 📖
 
@@ -64,22 +88,19 @@ Usamos [SemVer](http://semver.org/) para el versionado. Para todas las versiones
 
 _Menciona a todos aquellos que ayudaron a levantar el proyecto desde sus inicios_
 
-* **Andrés Villanueva** - *Trabajo Inicial* - [villanuevand](https://github.com/villanuevand)
-* **Fulanito Detal** - *Documentación* - [fulanitodetal](#fulanito-de-tal)
-* **Jaziell Silva Rndom** - *Hacer branch sin saber* - [SirRndom](https://github.com/SirRndom)
-
-* **Toledo Aguado Arturo Emmanuel** - *Hecharle ganas mijo* - [R2](https://github.com/ArturoEmmanuelToledoAguado)
-
-También puedes mirar la lista de todos los [contribuyentes](https://github.com/your/project/contributors) quíenes han participado en este proyecto. 
+* **Luis Gerardo Baeza Ramirez** - *Trabajo Inicial* - [ThunderGer](https://github.com/ThunderGer23)
+* **Brenda Melissa Aguirre Solis** - *Documentación* - [MelsSolis](#fulanito-de-tal)
+* **Daphne Liliana Cisneros Martínez** - *Maquetado* - [DaphneLi](https://github.com/DaphneLi)
 
 ## Licencia 📄
 
-Este proyecto está bajo la Licencia (Tu Licencia) - mira el archivo [LICENSE.md](LICENSE) para detalles
+Este proyecto está bajo la Licencia (Tu Licencia) - mira el archivo [LICENSE](LICENSE) para detalles
 
 ## Expresiones de Gratitud 🎁
 
-* Comenta a otros sobre este proyecto 📢
-* Invita una cerveza 🍺 o un café ☕ a alguien del equipo. 
-* Da las gracias públicamente 🤓.
-* Dona con cripto a esta dirección: `0xf253fc233333078436d111175e5a76a649890000`
-* etc.
+**MelsSolis**
+* Gracias ThunderGer por la paciencia y conocimiento brindado.
+* Y a mis amigos por no invitarme a jugar porque si no, no hubiera hecho el proyecto :P 
+
+
+
