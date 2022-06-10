@@ -1,3 +1,4 @@
+import re
 from turtle import title
 from fastapi import APIRouter, UploadFile, File
 from numpy import load
@@ -107,3 +108,13 @@ def get_medium(author: str):
     Mon = MongoClient(MonClient["Daphne"])
     medium = Mon.bdd.medium.count_documents({"authors": author})
     return medium
+
+@medium.get("/repoMediumtitle/{title}", tags=['Medium'])
+def get_medium(title: str):
+    Mon = MongoClient(MonClient["Daphne"])
+    medium = Mon.bdd.medium.find({"title": title})
+    consulta2 = mediumsDatesEntity(medium)
+    id = consulta2[0]['idMediumText']    
+    Mon = MongoClient(MonClient["ThunderGer"])
+    medium = Mon.bdd.medium.find_one({"_id": ObjectId(id)})    
+    return mediumRepoEntity(medium)
